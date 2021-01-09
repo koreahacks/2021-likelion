@@ -263,3 +263,21 @@ section {
     font-weight: 700;
     border-radius: 5px;
 }
+
+.team-member-box {
+    display: flex;
+    width: 800px;
+    height: 50px;
+    align-items: center;
+}
+
+.team-member-box>span {
+    font-size: 20px;
+    font-weight: 700;
+    width: 50px;
+}
+
+.team {
+    margin-left: 160px;
+    width: 100px;
+}

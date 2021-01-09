@@ -100,8 +100,17 @@
             </div>
             <hr>
             {% if access == True %}
+            <div class="team-member-box">
+                <span>팀원</span> :
+                {% for role in contest.role_set.all %}
+                {% for user in role.confirmed_members.all %}
+                <a href="#">{{ user.name }}</a>
+                {% endfor %}
+                {% endfor %}
+            </div>
+            <hr>
             <div class="applicants-box">
-                <span>포지션에 지원한 사람들</span>
+                <span>지원한 사람들</span>
 
                 <div class="applicants-list-box">
                     {% for role in contest.role_set.all %}
@@ -113,13 +122,10 @@
                         <!-- 지원자 학과 -->
                         <span>{{ user.major }}</span>
                         <!-- 지원자 이름 -->
-                        <span class="selected-user-name-{{user.id}}">{{ user.name }}</span>
+                        <a href="#" style="font-size: 20px; margin-top: 2px"
+                            class="selected-user-name-{{user.id}}">{{ user.name }}</a>
                         <!-- 뱃지 이미지 태그 추가해야 하는 박스 -->
-                        <div class="applicants-badges">
-                            <img src="./images/atendee_badge_sm.png" alt="">
-                            <img src="./images/atendee_badge_sm.png" alt="">
-                            <img src="./images/atendee_badge_sm.png" alt="">
-                        </div>
+
                         <!-- 수락하기 거절하기 버튼 -->
                         <div class="applicants-buttons">
                             <button class="green-btn" onclick="confirm_(this)"
@@ -147,7 +153,8 @@
                         <span>{{ role.name }}</span>
                         <!-- 모집 인원 수 -->
                         <div><span>{{ role.max_size }}</span><span>명</span></div>
-                        <a href="{% url 'register' role.id contest.id %}" class="green-btn register-btn">지원하기</a>
+                        <a href="{% url 'register' role.id contest.id %}" class="green-btn"
+                            style="color: white;">지원하기</a>
                     </div>
                     <!-- 카드 끝 -->
                     {% endif %}
