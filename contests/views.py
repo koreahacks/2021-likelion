@@ -31,8 +31,8 @@ def create_contest(request):
         new_contest.title = request.POST["title"]
         new_contest.deadline = request.POST["deadline"]
         new_contest.category = request.POST["category"]
-        new_contest.detail = request.POST['detail']
-        new_contest.poster = request.FILES['poster']
+        new_contest.detail = request.POST["detail"]
+        new_contest.poster = request.FILES["poster"]
 
         new_contest.save()
 
@@ -232,8 +232,8 @@ def register_in_team(request):
     if role.confirmed_members.count() >= role.max_size:
         message = "fail"
     else:
-        # role.confirmed_members.add(user)
-        # role.not_confirmed_members.remove(user)
+        role.confirmed_members.add(user)
+        role.not_confirmed_members.remove(user)
         message = "connect success"
 
     # ajax를 이용한 비동기 통신을 위한 코드
@@ -242,6 +242,26 @@ def register_in_team(request):
         "role_name": role.name,
         "role_max_size": role.max_size,
         "user_name": user.name,
+    }
+
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+
+@require_POST
+def deny(request):
+    contest_id = request.POST["contest_id"]
+    role_id = request.POST["role_id"]
+    user_id = request.POST["user_id"]
+
+    print(contest_id + role_id + user_id)
+
+    role = Role.objects.get(pk=role_id)
+    user = User.objects.get(pk=user_id)
+
+    role.confirmed_members.remove(user)
+
+    context = {
+        "username": user.name,
     }
 
     return HttpResponse(json.dumps(context), content_type="application/json")

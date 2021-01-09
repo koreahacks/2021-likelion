@@ -101,7 +101,7 @@
             <hr>
             {% if access == True %}
             <div class="applicants-box">
-                <span>지원한 사람들</span>
+                <span>팀원</span>
 
                 <div class="applicants-list-box">
                     {% for role in contest.role_set.all %}
@@ -262,7 +262,7 @@
 
         $.ajax({
             type: "POST",
-            url: "",
+            url: "{% url 'deny' %}",
             data: {
                 "contest_id": contest_id,
                 "role_id": role_id,
@@ -271,7 +271,7 @@
             },
             dataType: "json",
             success: function (response) {
-
+                parent = $(e).parent().parent().remove()
             },
             error: function (request, status, error) {
                 alert("통신 실패")
