@@ -17,6 +17,13 @@ class portfolio_list(ListView):
     context_object_name = 'users'
     template_name = 'portfolio_list.html'
 
+    def get_queryset(self):
+        name = self.kwargs.get('name', '')
+        object_list = self.model.objects.all()
+        if name:
+            object_list = object_list.filter(name__icontains=name)
+        return object_list
+
 # 유저 포트폴리오 페이지
 class portfolio_detail(DetailView):
     '''포트폴리오(유저) 디테일'''
