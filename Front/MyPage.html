@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../static/css/reset.css">
-    <link rel="stylesheet" href="../../static/css/base.css">
-    <link rel="stylesheet" href="../../Front/join.css">
+    <link rel="stylesheet" href="../static/css/reset.css">
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="MyPage.css">
     <title>안나소 - 나를 표현하는 가장 쉬운 방법</title>
 </head>
 
@@ -27,29 +27,61 @@
 <!-- ---------------여기부터 컨텐츠 부분 입니다.-----------------  -->
 <main>
     <form action="/" method="GET">
-        <div class="join-div">
-            <p>회원가입</p>
+        <div class="mypage-div">
+            <p class="mypage-title">
+                내 정보
+            </p>
+            
             <p>
                 <img src="test.jpg">
             </p>
+            
             <div class="filebox">
-                <label for="ex_file">프로필 사진 업로드</label>
+                <label for="ex_file">프로필 사진 변경</label>
                 <input type="file" id="ex_file">
-              </div>
-            <p>
-                <input type="text" placeholder="이름을 입력하세요.">
-                <input type="text" placeholder="재학 중인 학교를 입력하세요.">
-                <input type="text" placeholder="전공 명을 입력하세요.">
-                <input type="text" placeholder="휴대폰 번호를 입력하세요.">
-                <input type="text" placeholder="이메일을 입력하세요.">
-                <input type="text" placeholder="아이디를 입력하세요.">
-                <input type="text" placeholder="비밀번호를 입력하세요.">
-                <input type="text" placeholder="비밀번호를 한 번 더 입력하세요.">
-                <input type="text" placeholder="한 줄 소개를 입력하세요.">
-                <input type="text" placeholder="나를 나타내는 해시태그를 입력하세요.">
-                <span class="tag-info">태그는 ','으로 구분해주세요.</span>
-                <button type="submit">확인</button>
-            </p>
+            </div>
+
+            <div class="mypage-info">
+                <p>
+                    <span>이름</span>
+                    <span>김멋사</span>
+                </p>
+
+                <p>
+                    <span>학교</span>
+                    <span>순천향대학교</span>
+                </p>
+
+                <p>
+                    <span>전공</span>
+                    <span>컴퓨터공학과</span>
+                </p>
+                <p>
+                    <span>아이디</span>
+                    <span>aaa123</span>
+                </p>
+                <p>
+                    <span>전화번호</span>
+                        <input type="text" placeholder="휴대폰 번호를 입력하세요.">
+
+                    <span>이메일</span>
+                        <input type="text" placeholder="이메일을 입력하세요.">
+
+                    <span>비밀번호</span>
+                        <input type="text" placeholder="비밀번호를 입력하세요.">
+
+                    <span>비밀번호 확인</span>
+                        <input type="text" placeholder="비밀번호를 한 번 더 입력하세요.">
+
+                    <span>한 줄 소개</span>
+                        <input type="text" placeholder="한 줄 소개를 입력하세요.">
+
+                    <span>해시태그</span>
+                        <input type="text" placeholder="나를 나타내는 해시태그를 입력하세요.">
+
+                    <button type="submit">확인</button>
+                </p>
+            </div>
         </div>
     </form>
 </main>
