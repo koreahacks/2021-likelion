@@ -8,7 +8,7 @@ class ProjectTags(models.Model):
     
     ''' 프로젝트 연결 '''
     projectid = models.ForeignKey(
-        "project.Project", related_name='tags', on_delete=models.CASCADE)
+        "Project", related_name='tags', on_delete=models.CASCADE)
 
 
 class Project(models.Model):
