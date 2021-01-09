@@ -27,9 +27,7 @@ class Contest(models.Model):
     # 공모전 카테고리
     category = models.CharField(max_length=100, null=False)
     # 공모전 포스터
-    poster = models.ImageField(
-        upload_to="poster/", default="static/images/default_poster"
-    )
+    poster = models.ImageField(upload_to="poster/")
     # 공모전 디테일 - ckeditor
     # detail = RichTextUploadingField()
     # 전체 구하는 팀원 수

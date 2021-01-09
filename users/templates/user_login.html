@@ -10,6 +10,7 @@
 {% block content %}
 <main>
     <form action="{% url 'user_login' %}" method="POST">
+        {% csrf_token %}
         <div class="login-div">
             <p>로그인</p>
             <p>
@@ -22,4 +23,4 @@
         </div>
     </form>
 </main>
-{% endblock %}   
+{% endblock %}
