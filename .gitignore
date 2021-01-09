@@ -394,4 +394,9 @@ secret.json
 
 .vscode
 
+contests/migrations
+main/migrations
+projests/migrations
+users/migrations
+
 # End of https://www.toptal.com/developers/gitignore/api/django,python,vscode,macos,windows,pycharm
