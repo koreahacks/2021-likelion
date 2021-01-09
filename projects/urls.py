@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     # 프로젝트 생성/수정 및 프로젝트 상세 페이지
     path('project_create/', views.project_create, name='project_create'), # 생성
-    path('project_update/', views.project_update, name='project_update'), # 수정
+    path('project_update/<int:pk>', views.project_update, name='project_update'), # 수정
+    path('project_delete/<int:pk>', views.project_delete, name='project_delete'), # 수정
     path('project_detail/', views.project_detail, name='project_detail'), # 상세
 ]
