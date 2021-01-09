@@ -24,7 +24,7 @@ class Contest(models.Model):
     # 공모전 카테고리
     category = models.CharField(max_length=100, null=False)
     # 공모전 포스터
-    # poster = models.ImageField(null=True)
+    poster = models.ImageField(null=True)
     # 공모전 디테일 - ckeditor
     # detail = RichTextUploadingField()
     # 모집중인지 아닌지
@@ -33,6 +33,13 @@ class Contest(models.Model):
     # total_members = models.IntegerField()
     # 현제 우리 팀원 수
     # confirmed_members = models.IntegerField()
+    hit_count = models.PositiveIntegerField(default=0)
+    timeline = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def update_hit_counter(self):
+        self.hit_count += 1
+        self.save()
 
 
 """
