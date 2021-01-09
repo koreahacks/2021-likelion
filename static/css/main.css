@@ -52,8 +52,15 @@
 #main-img {
     width: 500px;
     height: 500px;
-    background: url('../images/main_login_before.png') no-repeat center center / contain;
+    background: url('/static/images/main_login_before.png') no-repeat center center / contain;
 }
+
+#main-img2 {
+    width: 500px;
+    height: 500px;
+    background: url('/static/images/main_login_after.png') no-repeat center center / contain;
+}
+
 
 .main-content {
     margin-bottom: 5vh;
