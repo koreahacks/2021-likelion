@@ -26,14 +26,29 @@
     </header>
 <!-- 여기부터 컨텐츠 부분 입니다.  -->
     <main>
+        
         <div class="small-header">
             <div class="search-bar">
                 <input type="text" placeholder="찾는 사람의 이름, 학과 등을 입력해주세요.">
                 <a href=""><img src="images/search.png" alt="검색 아이콘"></a>
             </div>
-            <div class="banner-div">
-                배너 공간 
-            </div>
+            <!-- 롤링배너 부분 -->
+            <div class="slide">
+                <input type="radio" name="pos" id="pos1" checked>
+                <input type="radio" name="pos" id="pos2">
+            
+                <!-- 슬라이드 이미지 -->
+                <ul>
+                    <li><img src="배너1.png" alt="logo" width="920px" height="470px"></li>
+                    <li><img src="배너2.png" alt="logo" width="920px" height="470px"></li>
+                </ul>
+
+                <!-- 슬라이드 단추  -->
+                <p class="bullet">
+                    <label for="pos1">1</label>
+                    <label for="pos2">2</label>
+                </p>
+        </div>
         </div>
         <div class="card-flex">
             <a href="#">
