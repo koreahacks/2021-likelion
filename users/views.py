@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib import auth
 
 # CBV import
@@ -26,8 +26,27 @@ class portfolio_detail(DetailView):
 
 # 포트폴리오 내정보 수정 페이지
 def user_edit(request):
+    users = request.user
+    if request.method == 'POST':
+        users.phone_number = request.POST['phone_number']
+        users.email = request.POST['email']
+        users.description = request.POST['description']
+       
+        tag = users.hashtags.all()
+        tag.delete()
 
-    return render(request, 'portfolio_user_edit.html')
+        tags = request.POST.get('tags').split(',')
+        for tg in tags:
+            g = HashTags(
+                tag_name=tg,
+                user=users
+            )
+            g.save() # 키워드 태그 생성
+        
+        return redirect('portfolio_detail', request.user.pk)
+    
+
+    return render(request, 'user_editor.html', {"users":users})
 
 
 

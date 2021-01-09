@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     # 유저 로그인/로그아웃/회원가입
+    path('user_editor/', views.user_edit ,name="user_editor"),
     path('user_login/', views.user_login ,name="user_login"),
     path('user_logout/', views.user_logout, name="user_logout"),
     path('user_signup/', views.user_signup, name="user_signup"),
