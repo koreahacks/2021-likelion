@@ -4,11 +4,10 @@ from django.contrib.auth.admin import UserAdmin
 
 # Register your models here.
 
+# Hash Tags 어드민 페이지 생성
 admin.site.register(HashTags)
 
-# admin.site.register(User)
-
-
+# 유저 커스텀 모델로 인해 자체 어드민 페이지 생성
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
 

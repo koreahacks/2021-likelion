@@ -8,7 +8,6 @@ class HashTags(models.Model):
     tag_name = models.CharField(max_length=20) # 해시태그이름
     user = models.ForeignKey( # User 외래키
         "users.User", related_name="hashtags", on_delete=models.CASCADE)
-    )
     
     def __str__(self):
         return self.tag_name

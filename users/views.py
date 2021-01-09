@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.contrib import auth
 
 # CBV import
 from django.views.generic.detail import DetailView
@@ -23,10 +24,14 @@ class portfolio_detail(DetailView):
     context_object_name = 'users'
     template_name = 'portfolio_detail.html' 
 
+# 포트폴리오 내정보 수정 페이지
+def user_edit(request):
+    return render(request, 'portfolio_user_edit.html')
+
 # User Login View
 def user_login(request):
     # POST 형식의 로그인 폼 값 전달 시에 함수 실행
-    if request.method == 'POST'
+    if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
 
@@ -38,7 +43,7 @@ def user_login(request):
         # 로그인 됐을 시 none이 아니기 때문에, 메인으로 이동해야함!
         if user is not None:
             auth.login(request, user)
-            # return redirect('') # 메인으로 이동해야함.
+            return redirect('main') # 메인으로 이동해야함.
 
         # 로그인 안됐을 시, 오류 안내
         else:
@@ -47,5 +52,9 @@ def user_login(request):
    
     #Login Form으로 이동 할 시 기본 로그인 창으로 이동함.
     else:
-        return render(request, "userLogin.html")
+        return render(request, "user_login.html")
 
+
+def user_logout(request):
+    auth.logout(request)
+    return redirect('user_login')
