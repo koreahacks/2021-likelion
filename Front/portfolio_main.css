@@ -56,7 +56,15 @@
     height: 400px;
     margin: 8vh 20px;
     border: 1px solid #e4e4e4;
+    box-shadow: 2px 2px 3px 3px #e4e4e442;
     text-align: center;
+}
+
+.card:hover {
+    cursor: pointer;
+    box-shadow: 3px 5px 8px 5px #bebebe8f;
+    transition: .3s;
+    transform: translate(0, -5%);
 }
 
 /*이미지 설정*/
@@ -87,4 +95,30 @@
     font-size: 20px;
     font-weight: 400;
     padding-top: 30px;
+}
+
+.card p:nth-of-type(4) {
+    padding-top: 85px;
+    padding-bottom: 5px;
+    font-size: 15px;
+    font-weight: 300;
+
+}
+
+.card p:nth-of-type(4) span {
+    padding-right: 5px;
+    margin-bottom: 10px;
+    height: 10px;
+}
+
+.card p:nth-of-type(4) span:nth-of-type(1) {
+    background-color: rgb(152, 152, 255);
+}
+
+.card p:nth-of-type(4) span:nth-of-type(2) {
+    background-color: rgb(255, 209, 140);
+}
+
+.card p:nth-of-type(4) span:nth-of-type(3) {
+    background-color: rgb(144, 172, 113);
 }
