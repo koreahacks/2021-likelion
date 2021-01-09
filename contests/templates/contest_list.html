@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>contest list</title>
 </head>
+<a href="?sort=recent">최신순으로 보기</a>
+<a href="?sort=hit">조회수 순으로 보기</a>
+<a href="#">남은날자 순으로 보기</a>
+
+<hr>
+{% for contest in contests %}
+<p>{{ contest.contest_name }} {{ contest.days_left }}</p>
+<p>남은 날자 : {{ contest.days_left }}</p>
+<hr>
+{% endfor %}
 
 <body>
 
