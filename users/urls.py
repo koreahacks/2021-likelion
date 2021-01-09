@@ -9,4 +9,5 @@ urlpatterns = [
     path('user_signup/', views.user_signup, name="user_signup"),
     path('portfolio_detail/<int:pk>', views.portfolio_detail.as_view(), name="portfolio_detail"),  # 유저 포트폴리오 개인 페이지 이동
     path('portfolio/', views.portfolio_list.as_view(),name="portfolio_list"),  # 유저 포트폴리오 리스트
+    path('portfolio_search/', views.portfolio_searching,name="search_list"),  # 유저 포트폴리오 리스트
 ]
