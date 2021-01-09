@@ -47,8 +47,7 @@ tfoot,
 thead,
 tr,
 th,
-td,
-hr {
+td {
     margin: 0;
     padding: 0;
 }
@@ -76,11 +75,6 @@ iframe {
 img,
 button {
     border: 0 none;
-}
-
-hr {
-    height: 0;
-    display: none;
 }
 
 i,

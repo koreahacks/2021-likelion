@@ -1,18 +1,25 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./reset.css">
-    <link rel="stylesheet" href="./base.css">
-    <title>안나소 - 나를 표현하는 가장 쉬운 방법</title>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+    {% block head %}{% endblock %}
+
+    {% block title %}
+    <!-- <title>안나소 - 나를 표현하는 가장 쉬운 방법</title> -->
+    {% endblock %}
 </head>
 
 <body>
     <header>
         <div class="header-links">
-            <a href=""><img src="./images/anaso_kor_logo.png" alt=""></a>
+            <a href=""><img src="{% static 'images/anaso_kor_logo.png' %}" alt=""></a>
             <nav>
                 <a href="">포트폴리오</a>
                 <a href="">공모전</a>
@@ -25,12 +32,12 @@
     </header>
 
     <main>
-
+        {% block content %}{% endblock %}
     </main>
 
     <footer>
         <div class="footer-logos">
-            <img src=" ./images/anaso_eng_logo.png" alt="">
+            <img src="{% static 'images/anaso_eng_logo.png' %}" alt="">
             <span>© 고카톤 순천향대학교 멋사팀</span>
             <span>안나소는 안녕 나를 소개하지의 줄임말입니다.</span>
             <span>안나소는 전국의 모든 대학생을 응원합니다.</span>
@@ -50,6 +57,7 @@
             </div>
         </div>
     </footer>
+    {% block script %}{% endblock %}
 </body>
 
 </html>
