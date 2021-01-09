@@ -25,10 +25,17 @@
                 <a href="">공모전</a>
             </nav>
         </div>
+        {% if user.is_authenticated %}
+        <div class="header-btns">
+            <button class="black-btn" type="button" onclick="">유저이름</button>
+            <button class="black-btn" type="button" onclick="">로그아웃</button>
+        </div>
+        {% else %}
         <div class="header-btns">
             <button class="black-btn" type="button" onclick="">회원가입</button>
             <button class="black-btn" type="button" onclick="">로그인</button>
         </div>
+        {% endif %}
     </header>
 
     <main>
