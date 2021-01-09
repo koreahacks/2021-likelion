@@ -1,0 +1,22 @@
+{% load static %}
+
+{% for user in users %}
+    <div>
+        <a href="{% url 'portfolio_detail' user.pk %}" >
+            <img src="{{user.image.url}}" style="width:200px;height:200px;"alt="">
+            {{user.name}}
+            {% if user.hit_count >= 10 %}
+                <img src="{% static 'images/badge/view_badge_sm.png' %}" alt="">
+            {% endif %}
+            {% if user.hit_count >= 10 %}
+                <img src="{% static 'images/badge/view_badge_sm.png' %}" alt="">
+            {% endif %}
+            {% if user.hit_count >= 10 %}
+                <img src="{% static 'images/badge/view_badge_sm.png' %}" alt="">
+            {% endif %}
+            {% if user.hit_count >= 10 %}
+                <img src="{% static 'images/badge/view_badge_sm.png' %}" alt="">
+            {% endif %}
+        </a>
+    </div>
+{% endfor %}
