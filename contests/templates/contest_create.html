@@ -31,7 +31,7 @@
     <div class="post-bg">
         <form action="{% url 'contest_create' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-    
+
             <div class="info-insert-box">
                 <span>제목</span>
                 <input type="text" name="title" placeholder="제목" required><br>
@@ -58,14 +58,17 @@
             <hr>
             <div class="positions-text">
                 <span>모집할 포지션</span>
-                <button class="green-btn" onclick="CreateTextBox();">추가</button>
+                <button class="green-btn" type="button" onclick="CreateTextBox();">추가</button>
             </div>
             <div class="positions">
                 <div class="positions-card">
-                    <input type="text" class="role_name_input" placeholder="0번째 역할 이름" name="role_name_0" required>
-                    <input type="number" min="0" placeholder="최대 인원 수를 적어주세요" name="role_size_0">
-                    <span>명</span>
-                    <button class="red-btn" onclick="ClearTextBox();">삭제</button>
+                    <div id="txtPanel">
+                        <div>
+                            <input type="text" class="role_name_input" name="role_name_0" required>
+                            <input type="number" min="0" placeholder="최대 인원 수를 적어주세요" name="role_size_0">
+                        </div>
+                    </div>
+                    <button type="button" class="red-btn" onclick="ClearTextBox();">삭제</button>
                 </div>
             </div><br>
             <input type="file" name="poster" required><br><br>
@@ -96,7 +99,7 @@
 
         // name에 job_name_갯수 를 넣어 innerhtml을 해준다
         var txt =
-            `<input type='text' class="role_name_input" placeholder="${count}번째 역할 이름" name="role_name_${count}" required><input type='text' placeholder="최대 인원 수를 적어주세요" name="role_size_${count}" required><br>`;
+            `<div><input type='text' class="role_name_input" placeholder="역할명" name="role_name_${count}" required><input type='text' placeholder="최대 인원 수를 적어주세요" name="role_size_${count}" required><br></div>`;
         document.getElementById("txtPanel").innerHTML += txt;
     }
 
@@ -112,9 +115,7 @@
 
         // 마지막 textPanel 의 자식 요소들 중 마지막 요소를 지우는 코드
         // br 요소 때문에 두번 반복
-        document.getElementById("txtPanel").lastChild.remove();
-        document.getElementById("txtPanel").lastChild.remove();
-        document.getElementById("txtPanel").lastChild.remove();
+        document.getElementById("txtPanel").parentNode.remove
     }
 </script>
 {% endblock %}
