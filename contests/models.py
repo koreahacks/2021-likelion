@@ -36,6 +36,9 @@ class Contest(models.Model):
     hit_count = models.PositiveIntegerField(default=0)
     timeline = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.contest_name + "/" + self.title
+
     @property
     def update_hit_counter(self):
         self.hit_count += 1
