@@ -11,18 +11,24 @@ from .models import Contest, Role
 
 def create_contest(request):
 
+    if request.user.is_authenticated:
+        current_user = request.user
+    else:
+        pass
+        # return redirect('login')
+
     if request.method == "POST":
 
         # 새로운 객체 생성
         new_contest = Contest()
 
         # 템플릿으로부터 데이터를 불러오는 코드
+        new_contest.author = current_user
         new_contest.contest_name = request.POST["contest_name"]
         new_contest.contest_organizer = request.POST["contest_organizer"]
         new_contest.title = request.POST["title"]
         new_contest.deadline = request.POST["deadline"]
         new_contest.category = request.POST["category"]
-        new_contest.poster = request.FILES["poster"]
 
         new_contest.save()
 
@@ -42,15 +48,42 @@ def create_contest(request):
 
             new_role.save()
 
-        return redirect("contest_create")
+        return redirect("contest_list")
 
     return render(request, "contest_create.html")
 
 
+"""
+공모전의 리스트를 불러오는 함수
+검색 기능, 키워드 별로 정렬 해주는 기능 필요
+"""
+
+
 def display_contest_list(request):
+
+    # search bar 구현
+    if "search" in request.GET:
+        search_keyword = request.GET["search"]
+        print(search_keyword)
+        filtered_contests = Contest.objects.filter(
+            contest_name__contains=search_keyword
+        )
+        print(len(filtered_contests))
+        context = {"contests": filtered_contests}
+        return render(request, "contest_list.html", context)
 
     # 기본 정렬 기준 : 생성 시간
     contest_query_set = Contest.objects.order_by("timeline")
+
+    if "sort" in request.GET:
+        if request.GET.get("sort") == "hit":
+            keyword = "hit_count"
+        elif request.GET.get("sort") == "days":
+            keyword = "days_left"
+        else:
+            keyword = "timeline"
+
+        contest_query_set = Contest.objects.order_by(keyword)
 
     context = {"contests": contest_query_set}
 

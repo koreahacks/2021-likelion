@@ -1,6 +1,7 @@
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
-import datetime
+from datetime import datetime, date
+from users.models import User
 
 # Create your models here.
 
@@ -16,7 +17,9 @@ class Contest(models.Model):
     # 공모전 주최 기관
     contest_organizer = models.CharField(max_length=100, null=False)
     # 작성자
-    # author = models.ForeignKey('User', on_delete = models.CASCADE, related_name='contest_set')
+    author = models.ForeignKey(
+        "users.User", on_delete=models.CASCADE, related_name="contest_set"
+    )
     # 작성 제목
     title = models.CharField(max_length=100, null=False)
     # 마감 기한
@@ -37,6 +40,7 @@ class Contest(models.Model):
     # confirmed_members = models.IntegerField()
     hit_count = models.PositiveIntegerField(default=0)
     timeline = models.DateTimeField(auto_now_add=True)
+    days_left = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.contest_name + "/" + self.title
@@ -45,6 +49,13 @@ class Contest(models.Model):
     def update_hit_counter(self):
         self.hit_count += 1
         self.save()
+
+    @property
+    def get_remain_days(self):
+        remain_days = (self.deadline - date.today()).days
+        self.days_left = remain_days
+        self.save()
+        return str(remain_days) + " 일"
 
 
 """
