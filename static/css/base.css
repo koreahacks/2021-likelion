@@ -85,10 +85,22 @@
 .green-btn {
     background-color: var(--anaso-green);
     color: #fff;
+    transition: .3s;
+}
+
+.green-btn:hover {
+    background-color: #36A270;
+    color: #fff;
 }
 
 .red-btn {
     background-color: var(--anaso-red);
+    color: #fff;
+    transition: .3s;
+}
+
+.red-btn:hover {
+    background-color: #C83B3B;
     color: #fff;
 }
 
