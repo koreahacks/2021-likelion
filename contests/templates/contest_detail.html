@@ -180,16 +180,6 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
-    function change_state() {
-        btns = document.getElementsByClassName("register-btn")
-        console.log(btns)
-        for (i = 0; i < btns.length; i++) {
-            btns[i].innerHTML = "지원완료"
-            btns[i].style.backgroundColor = '#757575'
-            $('.register-btn').prop('href', '#')
-        }
-    }
-
     function confirm_(e) {
         ids = $(e).attr('name').split("-");
         contest_id = ids[0]
