@@ -51,7 +51,7 @@ def project_update(request, pk):
         project.save()
         # 태그 생성하기 
         tag = project.tags.all()
-        tag.clean()
+        tag.delete()
 
         tags = request.POST.get('project_tags').split(',')
         for tag in tags:

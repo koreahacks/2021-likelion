@@ -74,7 +74,7 @@ def user_signup(request):
             user_ = User.objects.create_user(
                 username=request.POST.get('username'), 
                 password=request.POST.get('password1'), 
-                image = request.FILES['image'],
+                #image = request.FILES['image'],
                 name=request.POST.get('name'),
                 email=request.POST.get('email'),
                 phone_number=request.POST.get('phone_number'),
@@ -82,6 +82,8 @@ def user_signup(request):
                 university=request.POST.get('university'),
                 description=request.POST.get('description'),
             )
+            if 'image' in request.FILES:
+                user_.image = request.FILES['image']
             hashtags = request.POST.get('hashtags').split(',')
             for hstag in hashtags:
                 hashtag = HashTags(
