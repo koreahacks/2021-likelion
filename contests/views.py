@@ -125,6 +125,8 @@ def display_contest_detail(request, contest_id):
     if not request.user.is_authenticated:
         # 로그인 페이지로 바꿔줘야함
         return redirect("/")
+    else:
+        current_user = request.user
 
     current_user = request.user
 
@@ -197,6 +199,16 @@ def update_contest(request, contest_id):
         return redirect("contest_detail", contest_id)
 
     return render(request, "contest_update.html", {"contest": contest})
+
+
+def register_into_team(request, role_id, contest_id):
+
+    role = Role.objects.get(pk=role_id)
+    user = request.user
+
+    role.not_confirmed_members.add(user)
+
+    return redirect("contest_detail", contest_id)
 
 
 """
