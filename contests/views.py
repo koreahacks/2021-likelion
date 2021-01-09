@@ -111,3 +111,12 @@ def display_contest_detail(request, contest_id):
 
     contest = Contest.objects.get(pk=contest_id)
     pass
+
+
+"""
+공모전 수정 페이지
+"""
+
+
+def update_contest(request, contest_id):
+    pass
