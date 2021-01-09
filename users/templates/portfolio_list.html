@@ -8,14 +8,11 @@
             {% if user.hit_count >= 10 %}
                 <img src="{% static 'images/badge/view_badge_sm.png' %}" alt="">
             {% endif %}
-            {% if user.hit_count >= 10 %}
-                <img src="{% static 'images/badge/view_badge_sm.png' %}" alt="">
+            {% if user.project.count >= 5 %}
+                <img src="{% static 'images/badge/project_badge_sm.png' %}" alt="">
             {% endif %}
-            {% if user.hit_count >= 10 %}
-                <img src="{% static 'images/badge/view_badge_sm.png' %}" alt="">
-            {% endif %}
-            {% if user.hit_count >= 10 %}
-                <img src="{% static 'images/badge/view_badge_sm.png' %}" alt="">
+            {% if user.contest_set.count >= 5 %}
+                <img src="{% static 'images/badge/project_badge_sm.png' %}" alt="">
             {% endif %}
         </a>
     </div>

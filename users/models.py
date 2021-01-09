@@ -45,4 +45,3 @@ class User(AbstractUser):
         self.save()
         return self.hit_count
 
-

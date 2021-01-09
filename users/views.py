@@ -66,7 +66,6 @@ def user_logout(request):
 
 # 유저
 def user_signup(request):
-    
     # 유저 회원가입 폼 정상 작성시
     if request.method == 'POST':
         if request.POST.get('password1') == request.POST.get('password2'):
