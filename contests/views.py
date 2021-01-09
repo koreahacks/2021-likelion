@@ -58,7 +58,7 @@ def create_contest(request):
 검색 기능, 키워드 별로 정렬 해주는 기능 필요
 """
 
-
+# 정렬, 검색 둘다 한번에 할 수 있으면 최고 , 안되면 어쩔 수 없음
 def display_contest_list(request):
 
     # search bar 구현
@@ -88,3 +88,26 @@ def display_contest_list(request):
     context = {"contests": contest_query_set}
 
     return render(request, "contest_list.html", context)
+
+
+"""
+불러온 공모전 데이터를 삭제하는 함수
+"""
+
+
+def delete_contest(request, contest_id):
+
+    contest = Contest.objects.get(pk=contest_id)
+    contest.delete()
+    return redirect("contest_list")
+
+
+"""
+공모전의 디테일을 보여주는 함수
+"""
+
+
+def display_contest_detail(request, contest_id):
+
+    contest = Contest.objects.get(pk=contest_id)
+    pass
