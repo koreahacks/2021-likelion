@@ -100,13 +100,34 @@
             </div>
             <hr>
             {% if access == True %}
-            <div class="team-member-box">
-                <span>팀원</span> :
-                {% for role in contest.role_set.all %}
-                {% for user in role.confirmed_members.all %}
-                <a href="#">{{ user.name }}</a>
-                {% endfor %}
-                {% endfor %}
+            <div class="applicants-box">
+                <span>지원한 사람들</span>
+
+                <div class="applicants-list-box">
+                    {% for role in contest.role_set.all %}
+                    {% for user in role.not_confirmed_members.all %}
+                    <!-- 카드 시작 -->
+                    <div class="applicants-card">
+                        <!-- 포지션 이름 -->
+                        <span>{{ role.name }}</span>
+                        <!-- 지원자 학과 -->
+                        <span>{{ user.major }}</span>
+                        <!-- 지원자 이름 -->
+                        <a href="#" style="font-size: 20px; margin-top: 2px"
+                            class="selected-user-name-{{user.id}}">{{ user.name }}</a>
+                        <!-- 뱃지 이미지 태그 추가해야 하는 박스 -->
+
+                        <!-- 수락하기 거절하기 버튼 -->
+                        <div class="applicants-buttons">
+                            <button class="red-btn" onclick="deny(this)"
+                                name="{{contest.id}}-{{role.id}}-{{user.id}}">추방하기</button>
+                        </div>
+                    </div>
+                    <!-- 카드 끝 -->
+                    {% endfor %}
+                    {% endfor %}
+
+                </div>
             </div>
             <hr>
             <div class="applicants-box">
@@ -219,6 +240,38 @@
                     parent = $(e).parent().parent().remove()
                     console.log(parent)
                 }
+            },
+            error: function (request, status, error) {
+                alert("통신 실패")
+            },
+        });
+    }
+
+    function deny(e) {
+        ids = $(e).attr('name').split("-");
+        contest_id = ids[0]
+        role_id = ids[1]
+        user_id = ids[2]
+        console.log(contest_id, role_id, user_id)
+
+        selected_user_name = document.getElementsByClassName("selected-user-name-" + user_id)[0].innerText
+        console.log(selected_user_name)
+        if (!confirm(selected_user_name + " 님을 팀에서 추방 하시겠습니까??")) {
+            return
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "",
+            data: {
+                "contest_id": contest_id,
+                "role_id": role_id,
+                "user_id": user_id,
+                "csrfmiddlewaretoken": '{{ csrf_token }}',
+            },
+            dataType: "json",
+            success: function (response) {
+
             },
             error: function (request, status, error) {
                 alert("통신 실패")
