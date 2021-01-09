@@ -31,6 +31,8 @@ def create_contest(request):
         new_contest.title = request.POST["title"]
         new_contest.deadline = request.POST["deadline"]
         new_contest.category = request.POST["category"]
+        new_contest.detail = request.POST['detail']
+        new_contest.poster = request.FILES['poster']
 
         new_contest.save()
 
