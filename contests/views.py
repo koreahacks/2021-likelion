@@ -125,6 +125,8 @@ def display_contest_detail(request, contest_id):
     if not request.user.is_authenticated:
         # 로그인 페이지로 바꿔줘야함
         return redirect("/")
+    else:
+        current_user = request.user
 
     current_user = request.user
 

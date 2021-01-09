@@ -263,9 +263,3 @@ section {
     font-weight: 700;
     border-radius: 5px;
 }
-
-.applicants-box {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-}
