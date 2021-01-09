@@ -28,9 +28,9 @@
             <div class="info-box">
                 <div class="edit-and-delete">
                     <!-- 수정 링크 -->
-                    <a href="#">수정</a>
+                    <a href="{% url 'update' contest.id %}">수정</a>
                     <span>|</span>
-                    <a href="#">삭제</a>
+                    <a href="{% url 'delete' contest.id %}">삭제</a>
                 </div>
                 <!-- 카테고리  -->
                 <span>사진/영상/UCC</span>
