@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<span style="display:none">{{ users.update_counter }}</span>
+<span>{{ users.update_hitcount }}</span>
 <main>
     <div class="setion1-div">
         <p class="pofol-profile-edit">
@@ -41,7 +41,7 @@
         <div class="pofol-profile-div2">
             <p>
                 <!-- 조회수 뱃지 -->
-                {% if users.hit_count >= 100 %}
+                {% if users.hit_count >= 30 %}
                 <img src="{% static 'images/badge/atendee_badge.png' %}">
                 {% endif %}
                 <!-- 프로젝스 뱃지 -->
@@ -49,11 +49,11 @@
                 <img src="{% static 'images/badge/project_badge.png' %}">
                 {% endif %}
                 <!-- 공모전 게시글 뱃지 -->
-                {% if users.contest_set.count >= 100 %}
+                {% if users.contest_set.count >= 5 %}
                 <img src="{% static 'images/badge/planner_badge.png' %}">
                 {% endif %}
                 <!-- 공모전 참여 뱃지 -->
-                {% if users.hit_count >= 100 %}
+                {% if users.hit_count >= 30 %}
                 <img src="{% static 'images/badge/atendee_badge.png' %}">
                 {% endif %}
             </p>
@@ -104,12 +104,14 @@
                 <img class="contest-card-img" src="{{projects.thumnail.url}}" height="300px" width="300px">
                 <p class="project-date">
                     <span>{{projects.project_date}}</span>
+                    {% if users == user %}
                     <a href="{% url 'project_update' projects.pk %}">
                         <span>수정</span>
                     </a>
                     <a href="{% url 'project_delete' projects.pk %}">
                         <span>삭제</span>
                     </a>
+                    {% endif %}
                 </p>
                 <p class="project-title">
                     <span>{{projects.title}}</span>
