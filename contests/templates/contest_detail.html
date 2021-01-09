@@ -101,18 +101,18 @@
                     {% for role in contest.role_set.all %}
                     {% for user in role.confirmed_members.all %}
                     <!-- 카드 시작 -->
-                    <div style="width: 750px;" class="applicants-card">
+                    <div style=" width: 750px;" class="applicants-card">
                         <!-- 포지션 이름 -->
-                        <span>{{ role.name }}</span>
+                        <span style="width: 150px;">{{ role.name }}</span>
                         <!-- 지원자 학과 -->
-                        <span>{{ user.major }}</span>
+                        <span style="width: 150px;">{{ user.major }}</span>
                         <!-- 지원자 이름 -->
-                        <a href="#" style="font-size: 20px; margin-top: 2px"
+                        <a style="width: 150px;" href="#" style="font-size: 20px; margin-top: 2px"
                             class="selected-user-name-{{user.id}}">{{ user.name }}</a>
                         <!-- 뱃지 이미지 태그 추가해야 하는 박스 -->
 
                         <!-- 수락하기 거절하기 버튼 -->
-                        <div class="applicants-buttons">
+                        <div style="width: 150px;" class="applicants-buttons">
                             <button class="red-btn" onclick="expulsion(this)"
                                 name="{{contest.id}}-{{role.id}}-{{user.id}}">추방하기</button>
                         </div>
@@ -235,11 +235,11 @@
                     console.log(parent)
                     txt = `
                     <div style="width: 750px;" class="applicants-card my-team">
-                        <span>${response.role_name}</span>
-                        <span>${response.major}</span>
-                        <a href="#" style="font-size: 20px; margin-top: 2px"
+                        <span style="width: 150px;">${response.role_name}</span>
+                        <span style="width: 150px;">${response.major}</span>
+                        <a style="width: 150px;" href="{% url 'portfolio_list' %}" style="font-size: 20px; margin-top: 2px"
                             class="selected-user-name-${user_id}">${response.user_name}</a>
-                        <div class="applicants-buttons">
+                        <div style="width: 150px;" class="applicants-buttons">
                             <button class="red-btn" onclick="expulsion(this)"
                                 name="${contest_id}-${role_id}-${user_id}">추방하기</button>
                         </div>

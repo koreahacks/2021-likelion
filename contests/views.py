@@ -18,7 +18,7 @@ def create_contest(request):
     if request.user.is_authenticated:
         current_user = request.user
     else:
-        return redirect("/")
+        return redirect("user_login/")
 
     if request.method == "POST":
 
@@ -70,7 +70,7 @@ def display_contest_list(request):
     if request.user.is_authenticated:
         current_user = request.user
     else:
-        return redirect("/")
+        return redirect("user_login/")
 
     if "my_post" in request.POST:
         contests = current_user.contest_set.all()
@@ -127,7 +127,7 @@ def display_contest_detail(request, contest_id):
     # 로그인이 안돼있을 경우 로그인 페이지로 이동
     if not request.user.is_authenticated:
         # 로그인 페이지로 바꿔줘야함
-        return redirect("/")
+        return redirect("user_login/")
     else:
         current_user = request.user
 
@@ -233,8 +233,8 @@ def register_in_team(request):
     if role.confirmed_members.count() >= role.max_size:
         message = "fail"
     else:
-        # role.confirmed_members.add(user)
-        # role.not_confirmed_members.remove(user)
+        role.confirmed_members.add(user)
+        role.not_confirmed_members.remove(user)
         message = "connect success"
 
     # ajax를 이용한 비동기 통신을 위한 코드
@@ -260,7 +260,7 @@ def deny(request):
     role = Role.objects.get(pk=role_id)
     user = User.objects.get(pk=user_id)
 
-    # role.not_confirmed_members.remove(user)
+    role.not_confirmed_members.remove(user)
 
     context = {
         "username": user.name,
@@ -280,7 +280,7 @@ def expulsion(request):
     role = Role.objects.get(pk=role_id)
     user = User.objects.get(pk=user_id)
 
-    # role.confirmed_members.remove(user)
+    role.confirmed_members.remove(user)
 
     context = {
         "username": user.name,
