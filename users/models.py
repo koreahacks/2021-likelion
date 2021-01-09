@@ -2,6 +2,8 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django_fields import DefaultStaticImageField
+
 
 class HashTags(models.Model):
     ''' 자기 소개용 해시태그 Model '''
@@ -24,7 +26,7 @@ class User(AbstractUser):
 
     ''' 사용자 + 포트폴리오 모델  '''
     name = models.CharField(max_length=20)  # 이름
-    image = models.ImageField(upload_to='images/', null=True)  # 프로필 사진
+    image = DefaultStaticImageField(upload_to='images/', blank=True)  # 프로필 사진
     phone_number = models.CharField(max_length=20)  # 전화번호
     email = models.CharField(max_length=30)  # 이메일
 
@@ -36,9 +38,11 @@ class User(AbstractUser):
     def __str__(self):
         return self.name
 
-    # 유저에 대한 포트폴리오 조회수
+    # 유저에 대한 포트폴리오 조회수 카운트 반환
     @property
-    def update_counter(self):
+    def update_hitcount(self):
         self.hit_count = self.hit_count + 1
         self.save()
+        return self.hit_count
+
 

@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 from django.views.generic.list import ListView
 
 # Model Import
-from .models import User
+from .models import User, HashTags
 
 # 포트폴리오 리스트 페이지
 class portfolio_list(ListView):
@@ -27,6 +27,10 @@ class portfolio_detail(DetailView):
 # 포트폴리오 내정보 수정 페이지
 def user_edit(request):
     return render(request, 'portfolio_user_edit.html')
+
+
+# -------------------------------------------------
+''' User Model '''
 
 # User Login View
 def user_login(request):
@@ -54,7 +58,42 @@ def user_login(request):
     else:
         return render(request, "user_login.html")
 
-
+# 유저 로그아웃
 def user_logout(request):
     auth.logout(request)
     return redirect('user_login')
+
+
+# 유저
+def user_signup(request):
+    
+    # 유저 회원가입 폼 정상 작성시
+    if request.method == 'POST':
+        if request.POST.get('password1') == request.POST.get('password2'):
+            user_ = User.objects.create_user(
+                username=request.POST.get('username'), 
+                password=request.POST.get('password1'), 
+                image = request.FILES['image'],
+                name=request.POST.get('name'),
+                email=request.POST.get('email'),
+                phone_number=request.POST.get('phone_number'),
+                major=request.POST.get('major'),
+                university=request.POST.get('university'),
+                description=request.POST.get('description'),
+            )
+
+            hashtags = request.POST.get('hashtags').split(',')
+            for hstag in hashtags:
+                hashtag = HashTags(
+                    tag_name=hstag,
+                    user=user_
+                )
+                hashtag.save()
+                
+            auth.login(request, user_)
+            return redirect('main')
+        print("생성안됌.")
+        return redirect('user_signup')
+    else:
+        return render(request, 'user_signup.html')
+    return redirect('user_signup')
