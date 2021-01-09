@@ -3,4 +3,11 @@ from .models import Contest, Role
 
 # Register your models here.
 admin.site.register(Contest)
-admin.site.register(Role)
+
+
+@admin.register(Role)
+class RoleAdmin(admin.ModelAdmin):
+
+    list_display = ("name", "contest")
+
+    filter_horizontal = ("confirmed_members", "not_confirmed_members")
