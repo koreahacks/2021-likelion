@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Contest, Role
+from django.views.decorators.http import require_POST
 
 # Create your views here.
 
@@ -110,6 +111,28 @@ def delete_contest(request, contest_id):
 def display_contest_detail(request, contest_id):
 
     contest = Contest.objects.get(pk=contest_id)
+
+    context = {"contest": contest}
+
+    return render(request, "contest_detail.html", context)
+
+
+"""
+공모전 수정 페이지
+"""
+
+
+def update_contest(request, contest_id):
+    pass
+
+
+"""
+신청한 사람을 팀원으로 뽑아가는 함수
+"""
+
+
+@require_POST
+def register_in_team(request):
     pass
 
 

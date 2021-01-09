@@ -75,6 +75,10 @@ class Role(models.Model):
         "Contest", on_delete=models.CASCADE, related_name="role_set"
     )
     # 수락된 팀원들
-    # confirmed_members = models.ManyToManyField(User)
+    confirmed_members = models.ManyToManyField(
+        User, related_name="confirmed_member_set", blank=True, null=True
+    )
     # 수락 대기중인 사용자들
-    # not_confirmed_members = models.ManyToManyField(User)
+    not_confirmed_members = models.ManyToManyField(
+        User, related_name="not_confirmed_member_set", blank=True, null=True
+    )

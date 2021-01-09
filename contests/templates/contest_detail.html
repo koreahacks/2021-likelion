@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>{{ contest.contest_name }}</p>
+    {% for job in contest.role_set.all %}
+    <p>{{ job.name }}</p>
+    {% for user in job.not_confirmed_members.all %}
+    <button>{{ user.name }}</button>
+    {% endfor %}
+    {% endfor %}
+</body>
+
+</html>
