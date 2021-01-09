@@ -8,11 +8,17 @@
 </head>
 <a href="?sort=recent">최신순으로 보기</a>
 <a href="?sort=hit">조회수 순으로 보기</a>
-<a href="?sort=days">남은날자 순으로 보기</a>
+<a href="?sort=days">남은날자 순으로 보기</a><br><br>
+
+<form method="GET">
+    <input type="text" name="search">
+    <input type="submit" value="검색">
+</form>
+
 
 <hr>
 {% for contest in contests %}
-<p>{{ contest.contest_name }} {{ contest.days_left }}</p>
+<p>{{ contest.contest_name }}</p>
 <p>남은 날자 : {{ contest.days_left }}</p>
 <hr>
 {% endfor %}
