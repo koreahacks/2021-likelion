@@ -18,7 +18,7 @@ def create_contest(request):
     if request.user.is_authenticated:
         current_user = request.user
     else:
-        return redirect("user_login/")
+        return redirect("user_login")
 
     if request.method == "POST":
 
@@ -70,7 +70,7 @@ def display_contest_list(request):
     if request.user.is_authenticated:
         current_user = request.user
     else:
-        return redirect("user_login/")
+        return redirect("user_login")
 
     if "my_post" in request.POST:
         contests = current_user.contest_set.all()
@@ -127,7 +127,7 @@ def display_contest_detail(request, contest_id):
     # 로그인이 안돼있을 경우 로그인 페이지로 이동
     if not request.user.is_authenticated:
         # 로그인 페이지로 바꿔줘야함
-        return redirect("user_login/")
+        return redirect("user_login")
     else:
         current_user = request.user
 
