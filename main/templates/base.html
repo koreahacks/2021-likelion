@@ -21,8 +21,8 @@
         <div class="header-links">
             <a href="{% url 'main' %}"><img src="{% static 'images/anaso_kor_logo.png' %}" alt=""></a>
             <nav>
-                <a href="">포트폴리오</a>
-                <a href="">공모전</a>
+                <a href="{% url 'portfolio_list' %}">포트폴리오</a>
+                <a href="{% url 'contest_list' %}">공모전</a>
             </nav>
         </div>
         {% if user.is_authenticated %}
