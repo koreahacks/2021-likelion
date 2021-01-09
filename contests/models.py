@@ -38,8 +38,11 @@ class Contest(models.Model):
     # total_members = models.IntegerField()
     # 현제 우리 팀원 수
     # confirmed_members = models.IntegerField()
+    # 현재 공모수 조회수
     hit_count = models.PositiveIntegerField(default=0)
+    # 언제 생성 했는지 타임라인
     timeline = models.DateTimeField(auto_now_add=True)
+    # 마감까지 몇일 남았는지
     days_left = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
