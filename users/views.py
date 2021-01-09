@@ -9,6 +9,22 @@ from django.views.generic.list import ListView
 # Model Import
 from .models import User, HashTags
 
+
+def portfolio_searching(request) :
+
+    ''' Product Searching fbv '''
+
+    users = User.objects.all()
+    if request.GET.get:
+        search = request.GET.get('search')
+        print("검색어 확인",search, type(search))
+        
+        users = User.objects.all().filter(name__icontains = search)
+
+        return render(request, 'search_portfolio.html',{"users" : users})
+    
+    return render(request, 'portfolio_list.html',{"users" : users})
+
 # 포트폴리오 리스트 페이지
 class portfolio_list(ListView):
     '''포트폴리오(유저) 디테일'''
@@ -16,13 +32,6 @@ class portfolio_list(ListView):
     paginate_by = 9
     context_object_name = 'users'
     template_name = 'portfolio_list.html'
-
-    def get_queryset(self):
-        name = self.kwargs.get('name', '')
-        object_list = self.model.objects.all()
-        if name:
-            object_list = object_list.filter(name__icontains=name)
-        return object_list
 
 # 유저 포트폴리오 페이지
 class portfolio_detail(DetailView):
