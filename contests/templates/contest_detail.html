@@ -4,8 +4,8 @@
 
 {% block head %}
 <!-- 그 밖의 css를 넣어주세요. 아래는 예시입니다. -->
-<!-- <link rel="stylesheet" href="{% static 'css/main.css' %}"> -->
 <link rel="stylesheet" href="{% static 'css/contest_detail.css' %}">
+<link rel="stylesheet" href="{% static 'css/contest_detail_viewer.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -135,15 +135,75 @@
                 </div>
             </div>
             {% else %}
-            <div class="recruiting-box">
-                <span>모집 중인 포지션</span>
-                <!-- 모집 중인 포지션 하나에 대한 카드 -->
-                <div class="recuriting-card">
-
+            <div class="recruit-boxes">
+                <div class="recruiting-box">
+                    <span>모집 중인 포지션</span>
+                    <!-- 모집 중인 포지션 하나에 대한 카드 -->
+                    <div class="recuriting-card">
+                        <!-- 포지션 이름 -->
+                        <span>시놉시스</span>
+                        <!-- 모집 인원 수 -->
+                        <div><span>1</span><span>명</span></div>
+                        <button class="green-btn">지원하기</button>
+                    </div>
+                    <!-- 카드 끝 -->
+                    <div class="recuriting-card">
+                        <!-- 포지션 이름 -->
+                        <span>촬영보조</span>
+                        <!-- 모집 인원 수 -->
+                        <div><span>3</span><span>명</span></div>
+                        <button class="green-btn">지원하기</button>
+                    </div>
+                    <div class="recuriting-card">
+                        <!-- 포지션 이름 -->
+                        <span>프론트엔드</span>
+                        <!-- 모집 인원 수 -->
+                        <div><span>3</span><span>명</span></div>
+                        <button class="green-btn">지원하기</button>
+                    </div>
+                    <div class="recuriting-card">
+                        <!-- 포지션 이름 -->
+                        <span>촬영보조</span>
+                        <!-- 모집 인원 수 -->
+                        <div><span>1</span><span>명</span></div>
+                        <button class="green-btn">지원하기</button>
+                    </div>
                 </div>
-            </div>
-            <div class="recruitment-completed-box">
-                <span>모집 완료된 포지션</span>
+                <div class="recruitment-completed-box">
+                    <span>모집 완료된 포지션</span>
+                    <!-- 카드 시작 -->
+                    <div class="recuriting-card">
+                        <!-- 포지션 이름 -->
+                        <span>시놉시스</span>
+                        <!-- 멤버 이름 -->
+                        <span>장하얀</span>
+                    </div>
+                    <!-- 카드 끝 -->
+                    <!-- 카드 시작 -->
+                    <div class="recuriting-card">
+                        <!-- 포지션 이름 -->
+                        <span>시놉시스</span>
+                        <!-- 멤버 이름 -->
+                        <span>장하얀</span>
+                    </div>
+                    <!-- 카드 끝 -->
+                    <!-- 카드 시작 -->
+                    <div class="recuriting-card">
+                        <!-- 포지션 이름 -->
+                        <span>시놉시스</span>
+                        <!-- 멤버 이름 -->
+                        <span>장하얀</span>
+                    </div>
+                    <!-- 카드 끝 -->
+                    <!-- 카드 시작 -->
+                    <div class="recuriting-card">
+                        <!-- 포지션 이름 -->
+                        <span>시놉시스</span>
+                        <!-- 멤버 이름 -->
+                        <span>장하얀</span>
+                    </div>
+                    <!-- 카드 끝 -->
+                </div>
             </div>
             {% endif %}
         </div>
