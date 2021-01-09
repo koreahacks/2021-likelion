@@ -392,6 +392,9 @@ pip-selfcheck.json
 
 secret.json
 
+# twilio key
+twilio.json
+
 .vscode
 
 contests/migrations
