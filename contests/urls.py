@@ -15,4 +15,6 @@ urlpatterns = [
         views.register_into_team,
         name="register",
     ),
+    path("deny/", views.deny, name="deny"),
+    path("expulsion/", views.expulsion, name="expulsion"),
 ]
