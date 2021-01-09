@@ -122,9 +122,9 @@
                         </div>
                         <!-- 수락하기 거절하기 버튼 -->
                         <div class="applicants-buttons">
-                            <button class="green-btn" onclick="register(this)"
+                            <button class="green-btn" onclick="confirm_(this)"
                                 name="{{contest.id}}-{{role.id}}-{{user.id}}">수락하기</button>
-                            <button class="red-btn" onclick="remove(this)"
+                            <button class="red-btn" onclick="deny(this)"
                                 name="{{contest.id}}-{{role.id}}-{{user.id}}">거절하기</button>
                         </div>
                     </div>
@@ -152,7 +152,7 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
-    function register(e) {
+    function confirm_(e) {
         ids = $(e).attr('name').split("-");
         contest_id = ids[0]
         role_id = ids[1]
@@ -167,7 +167,7 @@
 
         $.ajax({
             type: "POST",
-            url: "{% url 'register' %}",
+            url: "{% url 'confirm' %}",
             data: {
                 "contest_id": contest_id,
                 "role_id": role_id,

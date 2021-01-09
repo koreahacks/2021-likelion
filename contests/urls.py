@@ -8,5 +8,5 @@ urlpatterns = [
     path(
         "detail/<int:contest_id>/", views.display_contest_detail, name="contest_detail"
     ),
-    path("register/", views.register_in_team, name="register"),
+    path("confirm/", views.register_in_team, name="confirm"),
 ]

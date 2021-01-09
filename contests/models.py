@@ -33,9 +33,6 @@ class Contest(models.Model):
     # 공모전 디테일 - ckeditor
     # detail = RichTextUploadingField()
     # 전체 구하는 팀원 수
-    # total_members = models.IntegerField()
-    # 현제 우리 팀원 수
-    # confirmed_members = models.IntegerField()
     # 현재 공모수 조회수
     hit_count = models.PositiveIntegerField(default=0)
     # 언제 생성 했는지 타임라인
