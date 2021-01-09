@@ -16,4 +16,5 @@ urlpatterns = [
         name="register",
     ),
     path("deny/", views.deny, name="deny"),
+    path("expulsion/", views.expulsion, name="expulsion"),
 ]

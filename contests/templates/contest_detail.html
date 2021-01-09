@@ -90,24 +90,18 @@
             <hr>
             <div class="body-box">
                 <!-- 본문 -->
-                <p>
-                    ㅇㅇ대학교 영화과 3학년 재학중인 최민석이라고 합니다<br>
-                    제가 감독을 맡고 기획하려고 합니다!<br>
-                    영상 아이디어는 있고요 콘티/시놉시스와 촬영을 도와주실 분 구합니다<br>
-                    배우는 두 명 필요합니다<br>
-                    제 이력은 포트폴리오 참고해 주세요!!<br>
-                </p>
+                {{ contest.detail }}
             </div>
             <hr>
             {% if access == True %}
             <div class="applicants-box">
                 <span>팀원</span>
 
-                <div class="applicants-list-box">
+                <div style="display: flex; flex-direction:column;" class="applicants-list-box my-team">
                     {% for role in contest.role_set.all %}
-                    {% for user in role.not_confirmed_members.all %}
+                    {% for user in role.confirmed_members.all %}
                     <!-- 카드 시작 -->
-                    <div class="applicants-card">
+                    <div style="width: 750px;" class="applicants-card">
                         <!-- 포지션 이름 -->
                         <span>{{ role.name }}</span>
                         <!-- 지원자 학과 -->
@@ -119,7 +113,7 @@
 
                         <!-- 수락하기 거절하기 버튼 -->
                         <div class="applicants-buttons">
-                            <button class="red-btn" onclick="deny(this)"
+                            <button class="red-btn" onclick="expulsion(this)"
                                 name="{{contest.id}}-{{role.id}}-{{user.id}}">추방하기</button>
                         </div>
                     </div>
@@ -239,6 +233,20 @@
                 } else {
                     parent = $(e).parent().parent().remove()
                     console.log(parent)
+                    txt = `
+                    <div style="width: 750px;" class="applicants-card my-team">
+                        <span>${response.role_name}</span>
+                        <span>${response.major}</span>
+                        <a href="#" style="font-size: 20px; margin-top: 2px"
+                            class="selected-user-name-${user_id}">${response.user_name}</a>
+                        <div class="applicants-buttons">
+                            <button class="red-btn" onclick="expulsion(this)"
+                                name="${contest_id}-${role_id}-${user_id}">추방하기</button>
+                        </div>
+                    </div>
+                    `
+                    console.log(txt)
+                    document.getElementsByClassName("my-team")[0].innerHTML += txt
                 }
             },
             error: function (request, status, error) {
@@ -263,6 +271,38 @@
         $.ajax({
             type: "POST",
             url: "{% url 'deny' %}",
+            data: {
+                "contest_id": contest_id,
+                "role_id": role_id,
+                "user_id": user_id,
+                "csrfmiddlewaretoken": '{{ csrf_token }}',
+            },
+            dataType: "json",
+            success: function (response) {
+                parent = $(e).parent().parent().remove()
+            },
+            error: function (request, status, error) {
+                alert("통신 실패")
+            },
+        });
+    }
+
+    function expulsion(e) {
+        ids = $(e).attr('name').split("-");
+        contest_id = ids[0]
+        role_id = ids[1]
+        user_id = ids[2]
+        console.log(contest_id, role_id, user_id)
+
+        selected_user_name = document.getElementsByClassName("selected-user-name-" + user_id)[0].innerText
+        console.log(selected_user_name)
+        if (!confirm(selected_user_name + " 님을 팀에서 추방 하시겠습니까??")) {
+            return
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "{% url 'expulsion' %}",
             data: {
                 "contest_id": contest_id,
                 "role_id": role_id,

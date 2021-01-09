@@ -3,6 +3,7 @@ from .models import Contest, Role
 from users.models import User
 from django.views.decorators.http import require_POST
 import json
+from . import remind_module
 
 # Create your views here.
 
@@ -232,8 +233,8 @@ def register_in_team(request):
     if role.confirmed_members.count() >= role.max_size:
         message = "fail"
     else:
-        role.confirmed_members.add(user)
-        role.not_confirmed_members.remove(user)
+        # role.confirmed_members.add(user)
+        # role.not_confirmed_members.remove(user)
         message = "connect success"
 
     # ajax를 이용한 비동기 통신을 위한 코드
@@ -242,6 +243,7 @@ def register_in_team(request):
         "role_name": role.name,
         "role_max_size": role.max_size,
         "user_name": user.name,
+        "major": user.major,
     }
 
     return HttpResponse(json.dumps(context), content_type="application/json")
@@ -258,10 +260,32 @@ def deny(request):
     role = Role.objects.get(pk=role_id)
     user = User.objects.get(pk=user_id)
 
-    role.confirmed_members.remove(user)
+    # role.not_confirmed_members.remove(user)
 
     context = {
         "username": user.name,
+    }
+
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+
+@require_POST
+def expulsion(request):
+    contest_id = request.POST["contest_id"]
+    role_id = request.POST["role_id"]
+    user_id = request.POST["user_id"]
+
+    print(contest_id + role_id + user_id)
+
+    role = Role.objects.get(pk=role_id)
+    user = User.objects.get(pk=user_id)
+
+    # role.confirmed_members.remove(user)
+
+    context = {
+        "username": user.name,
+        "rolename": role.name,
+        "major": user.major,
     }
 
     return HttpResponse(json.dumps(context), content_type="application/json")
