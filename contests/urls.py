@@ -10,4 +10,9 @@ urlpatterns = [
     ),
     path("update/<int:contest_id>/", views.update_contest, name="contest_update"),
     path("confirm/", views.register_in_team, name="confirm"),
+    path(
+        "register/<int:role_id>/<int:contest_id>",
+        views.register_into_team,
+        name="register",
+    ),
 ]

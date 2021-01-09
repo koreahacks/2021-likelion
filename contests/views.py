@@ -199,6 +199,16 @@ def update_contest(request, contest_id):
     return render(request, "contest_update.html", {"contest": contest})
 
 
+def register_into_team(request, role_id, contest_id):
+
+    role = Role.objects.get(pk=role_id)
+    user = request.user
+
+    role.not_confirmed_members.add(user)
+
+    return redirect("contest_detail", contest_id)
+
+
 """
 신청한 사람을 팀원으로 뽑아가는 함수
 """
