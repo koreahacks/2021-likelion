@@ -7,6 +7,8 @@ import datetime
 """
 공모전 모델
 """
+
+
 class Contest(models.Model):
 
     # 공모전 이름
@@ -31,17 +33,28 @@ class Contest(models.Model):
     # total_members = models.IntegerField()
     # 현제 우리 팀원 수
     # confirmed_members = models.IntegerField()
+    hit_count = models.PositiveIntegerField(default=0)
+    timeline = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def update_hit_counter(self):
+        self.hit_count += 1
+        self.save()
 
 
 """
 공모전 참가자의 역할에 해당하는 모델
 """
+
+
 class Role(models.Model):
 
     # 역할 이름
     name = models.CharField(max_length=100, null=False)
     # 연결된 공모전
-    contest = models.ForeignKey('Contest',on_delete=models.CASCADE,related_name='role_set')
+    contest = models.ForeignKey(
+        "Contest", on_delete=models.CASCADE, related_name="role_set"
+    )
     # 수락된 팀원들
     # confirmed_members = models.ManyToManyField(User)
     # 수락 대기중인 사용자들

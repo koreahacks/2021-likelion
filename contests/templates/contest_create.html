@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form action="{% url 'contest_create' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <input type="text" name="contest_name" placeholder="공모전 이름" required><br>
+        <input type="text" name="contest_organizer" placeholder="공모전 주최기관" required><br>
+        <input type="text" name="title" placeholder="제목" required><br>
+        <input type="date" name="deadline" required><br>
+        <input type="text" name="category" placeholder="category" required><br>
+
+        <input type="button" value="추가하기" onclick="CreateTextBox();">
+        <input type="button" value="삭제" onclick="ClearTextBox();">
+        <div id="txtPanel">
+            <input type='text' class="role_name_input" size='30' placeholder="0번째 역할 이름" name="role_name_0"
+                required><br>
+            <!-- 여기에 추가된 input box 가 들어감 -->
+        </div><br><br>
+
+        <input type="file" name="poster"><br><br>
+
+        <input type="submit">
+
+    </form>
+
+    <script type="text/javascript">
+        var labels = document.getElementsByTagName("label")
+        for (i = 0; i < labels.length; i++) {
+            if (labels[i].parentNode.tagName === 'P') {
+                labels[i].parentNode.remove()
+            }
+        }
+
+        // input box 를 하나 만드는 함수
+        function CreateTextBox() {
+
+            // job_name_input 이라는 클래스 이름을 가진 요소들의 갯수를 구한다
+            var count = document.getElementsByClassName("role_name_input").length;
+
+            // name에 job_name_갯수 를 넣어 innerhtml을 해준다
+            var txt =
+                `<input type='text' class="role_name_input" size='30' placeholder="${count}번째 역할 이름" name="role_name_${count}" required><br />`;
+            document.getElementById("txtPanel").innerHTML += txt;
+        }
+
+        // input box 를 하나 지우는 함수
+        function ClearTextBox() {
+
+            // job_name_input 이라는 클래스를 가진 요소가 1개이면 바로 함수 종료
+            var count = document.getElementsByClassName("role_name_input").length;
+            if (count == 1) {
+                alert("더이상 삭제할 수 없습니다.")
+                return;
+            }
+
+            // 마지막 textPanel 의 자식 요소들 중 마지막 요소를 지우는 코드
+            // br 요소 때문에 두번 반복
+            document.getElementById("txtPanel").lastChild.remove();
+            document.getElementById("txtPanel").lastChild.remove();
+        }
+    </script>
+
+</body>
+
+
+</html>
