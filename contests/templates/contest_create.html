@@ -115,7 +115,7 @@
 
         // 마지막 textPanel 의 자식 요소들 중 마지막 요소를 지우는 코드
         // br 요소 때문에 두번 반복
-        document.getElementById("txtPanel").parentNode.remove
+        document.getElementById("txtPanel").lastChild.remove()
     }
 </script>
 {% endblock %}
