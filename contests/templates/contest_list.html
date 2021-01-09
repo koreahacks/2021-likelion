@@ -42,7 +42,7 @@
                     <img src="{{ contest.poster.url }}" alt="poster">
                     <div class="contest-card-title">
                         <!-- 카테고리 -->
-                        <span>사진/영상/UCC</span>
+                        <span>{{ contest.category }}</span>
                         <!-- 남은 기한 -->
                         <span>D - </span><span>{{ contest.get_remain_days }}</span>
                     </div>

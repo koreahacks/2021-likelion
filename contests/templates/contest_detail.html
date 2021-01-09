@@ -33,7 +33,7 @@
                     <a href="{% url 'contest_delete' contest.id %}">삭제</a>
                 </div>
                 <!-- 카테고리  -->
-                <span>사진/영상/UCC</span>
+                <span>{{ contest.category }}</span>
                 <!-- 제목 -->
                 <span>{{ contest.title }}</span>
                 <p>
