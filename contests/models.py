@@ -7,6 +7,8 @@ import datetime
 """
 공모전 모델
 """
+
+
 class Contest(models.Model):
 
     # 공모전 이름
@@ -22,7 +24,7 @@ class Contest(models.Model):
     # 공모전 카테고리
     category = models.CharField(max_length=100, null=False)
     # 공모전 포스터
-    poster = models.ImageField(null=True)
+    # poster = models.ImageField(null=True)
     # 공모전 디테일 - ckeditor
     # detail = RichTextUploadingField()
     # 모집중인지 아닌지
@@ -36,12 +38,16 @@ class Contest(models.Model):
 """
 공모전 참가자의 역할에 해당하는 모델
 """
+
+
 class Role(models.Model):
 
     # 역할 이름
     name = models.CharField(max_length=100, null=False)
     # 연결된 공모전
-    contest = models.ForeignKey('Contest',on_delete=models.CASCADE,related_name='role_set')
+    contest = models.ForeignKey(
+        "Contest", on_delete=models.CASCADE, related_name="role_set"
+    )
     # 수락된 팀원들
     # confirmed_members = models.ManyToManyField(User)
     # 수락 대기중인 사용자들
