@@ -30,6 +30,7 @@ class Contest(models.Model):
     poster = models.ImageField(upload_to="poster/")
     # 공모전 디테일 - ckeditor
     # detail = RichTextUploadingField()
+    detail = models.TextField()
     # 전체 구하는 팀원 수
     # 현재 공모수 조회수
     hit_count = models.PositiveIntegerField(default=0)
