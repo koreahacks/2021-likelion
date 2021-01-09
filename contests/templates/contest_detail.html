@@ -138,71 +138,39 @@
             <div class="recruit-boxes">
                 <div class="recruiting-box">
                     <span>모집 중인 포지션</span>
+
+                    {% for role in contest.role_set.all %}
+                    {% if role.is_full == False %}
                     <!-- 모집 중인 포지션 하나에 대한 카드 -->
                     <div class="recuriting-card">
                         <!-- 포지션 이름 -->
-                        <span>시놉시스</span>
+                        <span>{{ role.name }}</span>
                         <!-- 모집 인원 수 -->
-                        <div><span>1</span><span>명</span></div>
-                        <button class="green-btn">지원하기</button>
+                        <div><span>{{ role.max_size }}</span><span>명</span></div>
+                        <a href="{% url 'register' role.id contest.id %}" class="green-btn register-btn">지원하기</a>
                     </div>
                     <!-- 카드 끝 -->
-                    <div class="recuriting-card">
-                        <!-- 포지션 이름 -->
-                        <span>촬영보조</span>
-                        <!-- 모집 인원 수 -->
-                        <div><span>3</span><span>명</span></div>
-                        <button class="green-btn">지원하기</button>
-                    </div>
-                    <div class="recuriting-card">
-                        <!-- 포지션 이름 -->
-                        <span>프론트엔드</span>
-                        <!-- 모집 인원 수 -->
-                        <div><span>3</span><span>명</span></div>
-                        <button class="green-btn">지원하기</button>
-                    </div>
-                    <div class="recuriting-card">
-                        <!-- 포지션 이름 -->
-                        <span>촬영보조</span>
-                        <!-- 모집 인원 수 -->
-                        <div><span>1</span><span>명</span></div>
-                        <button class="green-btn">지원하기</button>
-                    </div>
+                    {% endif %}
+                    {% endfor %}
+
                 </div>
-                <div class="recruitment-completed-box">
+                <div class=" recruitment-completed-box">
                     <span>모집 완료된 포지션</span>
-                    <!-- 카드 시작 -->
+                    {% for role in contest.role_set.all %}
+                    {% if role.is_full == True %}
+                    <!-- 모집 중인 포지션 하나에 대한 카드 -->
                     <div class="recuriting-card">
                         <!-- 포지션 이름 -->
-                        <span>시놉시스</span>
+                        <span>{{ role.name }}</span>
                         <!-- 멤버 이름 -->
-                        <span>장하얀</span>
+                        {% for user in role.confirmed_members.all %}
+                        <span>{{ user.name }}</span>
+                        {% endfor %}
                     </div>
                     <!-- 카드 끝 -->
-                    <!-- 카드 시작 -->
-                    <div class="recuriting-card">
-                        <!-- 포지션 이름 -->
-                        <span>시놉시스</span>
-                        <!-- 멤버 이름 -->
-                        <span>장하얀</span>
-                    </div>
-                    <!-- 카드 끝 -->
-                    <!-- 카드 시작 -->
-                    <div class="recuriting-card">
-                        <!-- 포지션 이름 -->
-                        <span>시놉시스</span>
-                        <!-- 멤버 이름 -->
-                        <span>장하얀</span>
-                    </div>
-                    <!-- 카드 끝 -->
-                    <!-- 카드 시작 -->
-                    <div class="recuriting-card">
-                        <!-- 포지션 이름 -->
-                        <span>시놉시스</span>
-                        <!-- 멤버 이름 -->
-                        <span>장하얀</span>
-                    </div>
-                    <!-- 카드 끝 -->
+                    {% endif %}
+                    {% endfor %}
+
                 </div>
             </div>
             {% endif %}
@@ -212,6 +180,16 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
+    function change_state() {
+        btns = document.getElementsByClassName("register-btn")
+        console.log(btns)
+        for (i = 0; i < btns.length; i++) {
+            btns[i].innerHTML = "지원완료"
+            btns[i].style.backgroundColor = '#757575'
+            $('.register-btn').prop('href', '#')
+        }
+    }
+
     function confirm_(e) {
         ids = $(e).attr('name').split("-");
         contest_id = ids[0]

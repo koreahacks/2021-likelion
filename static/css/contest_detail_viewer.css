@@ -55,7 +55,8 @@
 }
 
 /* 지원하기 버튼 */
-.recuriting-card>button {
+.recuriting-card>a {
+    text-align: center;
     width: 90px;
     height: 30px;
     line-height: 30px;
