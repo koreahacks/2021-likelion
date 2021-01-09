@@ -8,6 +8,26 @@ main {
     font-family: NanumBarunGothic;
 }
 
+.contest-card-flex a {
+    text-decoration: none;
+    color: black;
+
+}
+
+contest-card-flex a:visited {
+    color: black;
+}
+
+
+.contest-card a {
+    text-decoration: none;
+}
+
+.contest-card a:visited {
+    color: black;
+}
+
+
 .setion1-div {
     margin: 0 auto;
     text-align: center;
@@ -213,11 +233,18 @@ main {
     padding-bottom: 10px; */
 }
 
-.project-date span:nth-of-type(2),
-.project-date span:nth-of-type(3) {
+
+/* ----------수정 삭제----------  */
+.del {
     font-size: 15px;
     font-weight: 400;
     color: var(--anaso-gray);
+
+}
+
+.del:hover {
+    color: var(--anaso-green);
+
 }
 
 .project-card-tag {
