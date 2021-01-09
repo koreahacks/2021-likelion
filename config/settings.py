@@ -154,7 +154,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # ckeditor path 설정
 CKEDITOR_UPLOAD_PATH = "uploads/"
-
 DEFAULT_IMAGE_PATH = "images/default_poster.png"
 
 CKEDITOR_CONFIGS = {
@@ -183,8 +182,8 @@ CKEDITOR_CONFIGS = {
         ],
         "toolbar": "YourCustomToolbarConfig",  # put selected toolbar config here
         # 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
-        # 'height': 291,
-        # 'width': '100%',
+        'height': '400px',
+        'width': '1100px',
         # 'filebrowserWindowHeight': 725,
         # 'filebrowserWindowWidth': 940,
         # 'toolbarCanCollapse': True,
@@ -193,19 +192,7 @@ CKEDITOR_CONFIGS = {
         "extraPlugins": ",".join(
             [
                 "uploadimage",  # the upload image feature
-                # your extra plugins here
-                "div",
-                "autolink",
-                "autoembed",
-                "embedsemantic",
-                "autogrow",
-                # 'devtools',
-                "widget",
-                "lineutils",
-                "clipboard",
-                "dialog",
-                "dialogui",
-                "elementspath",
+              
             ]
         ),
     }

@@ -104,8 +104,12 @@
                 <img class="contest-card-img" src="{{projects.thumnail.url}}" height="300px" width="300px">
                 <p class="project-date">
                     <span>{{projects.project_date}}</span>
-                    <span>수정</span>
-                    <span>삭제</span>
+                    <a href="{% url 'project_update' projects.pk %}">
+                        <span>수정</span>
+                    </a>
+                    <a href="{% url 'project_delete' projects.pk %}">
+                        <span>삭제</span>
+                    </a>
                 </p>
                 <p class="project-title">
                     <span>{{projects.title}}</span>

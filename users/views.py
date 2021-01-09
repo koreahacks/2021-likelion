@@ -26,7 +26,9 @@ class portfolio_detail(DetailView):
 
 # 포트폴리오 내정보 수정 페이지
 def user_edit(request):
+
     return render(request, 'portfolio_user_edit.html')
+
 
 
 # -------------------------------------------------
@@ -80,7 +82,6 @@ def user_signup(request):
                 university=request.POST.get('university'),
                 description=request.POST.get('description'),
             )
-
             hashtags = request.POST.get('hashtags').split(',')
             for hstag in hashtags:
                 hashtag = HashTags(
