@@ -19,7 +19,7 @@
 <body>
     <header>
         <div class="header-links">
-            <a href=""><img src="{% static 'images/anaso_kor_logo.png' %}" alt=""></a>
+            <a href="{% url 'main' %}"><img src="{% static 'images/anaso_kor_logo.png' %}" alt=""></a>
             <nav>
                 <a href="">포트폴리오</a>
                 <a href="">공모전</a>
@@ -27,13 +27,13 @@
         </div>
         {% if user.is_authenticated %}
         <div class="header-btns">
-            <button class="black-btn" type="button" onclick="">유저이름</button>
-            <button class="black-btn" type="button" onclick="">로그아웃</button>
+            <button class="black-btn" type="button" onclick="location.href='{% url 'portfolio_detail' user.pk %}';">{{ user.name }}</button>
+            <button class="black-btn" type="button" onclick="location.href='{% url 'user_logout' %}';">로그아웃</button>
         </div>
         {% else %}
         <div class="header-btns">
-            <button class="black-btn" type="button" onclick="">회원가입</button>
-            <button class="black-btn" type="button" onclick="">로그인</button>
+            <button class="black-btn" type="button" onclick="location.href='{% url 'user_signup' %}';">회원가입</button>
+            <button class="black-btn" type="button" onclick="location.href='{% url 'user_login' %}';">로그인</button>
         </div>
         {% endif %}
     </header>

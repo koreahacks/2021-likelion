@@ -7,6 +7,10 @@
 <!-- <link rel="stylesheet" href="{% static 'css/main.css' %}"> -->
 {% endblock %}
 
+{% block title %}
+<title>안나소 - 나를 표현하는 가장 쉬운 방법</title>
+{% endblock %}
+
 {% block content %}
 <h1>메인 페이지 + 로그인 성공</h1>
 <a href="{% url 'user_logout' %}">로그아웃하깅!</a> <br>

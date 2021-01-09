@@ -61,7 +61,7 @@ def user_login(request):
 # 유저 로그아웃
 def user_logout(request):
     auth.logout(request)
-    return redirect('user_login')
+    return redirect('main')
 
 
 # 유저
