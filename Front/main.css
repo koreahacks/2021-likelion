@@ -66,26 +66,31 @@
 }
 
 .main-pic {
-    margin: 50px;
+    margin: 80px 0;
     width: 350px;
     height: 410px;
-    margin-left: 30vh;
 }
 
 .section2 {
-    width: 1920px;
+    margin: 0 auto;
+}
+
+.section2-box {
+    width: var(--main-width);
     margin: 0 auto;
     display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .section2 p:nth-of-type(1),
 .section2 p:nth-of-type(2) {
-    font-weight: 300;
+    font-weight: 400;
     font-size: 50px;
 }
 
 .section2 p:nth-of-type(4) span {
-    font-weight: 300;
+    font-weight: 400;
     font-size: 23.5px;
 }
 
@@ -99,9 +104,8 @@
 }
 
 .section2-letter {
-    margin-top: 50px;
     text-align: right;
-    margin-left: 22vh;
+    line-height: 65px;
 }
 
 .hight-light {
