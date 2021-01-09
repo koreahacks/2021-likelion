@@ -45,4 +45,10 @@ def create_contest(request):
 
 
 def display_contest_list(request):
-    pass
+
+    # 기본 정렬 기준 : 생성 시간
+    contest_query_set = Contest.objects.order_by("timeline")
+
+    context = {"contests": contest_query_set}
+
+    return render(request, "contest_list.html", context)
