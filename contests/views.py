@@ -99,4 +99,15 @@ def delete_contest(request, contest_id):
 
     contest = Contest.objects.get(pk=contest_id)
     contest.delete()
-    redirect("contest_list")
+    return redirect("contest_list")
+
+
+"""
+공모전의 디테일을 보여주는 함수
+"""
+
+
+def display_contest_detail(request, contest_id):
+
+    contest = Contest.objects.get(pk=contest_id)
+    pass
