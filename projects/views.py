@@ -2,10 +2,17 @@ from django.shortcuts import render
 from .forms import CreateProject
 from .models import Project, ProjectTags
 
-# 유저 프로젝트 Edit Page
-def project_edit(request):
+# 유저 프로젝트 Create 
+def project_create(request):
     form = CreateProject()
     return render(request, 'project_edit.html', {"form": form})
+
+    # 유저 프로젝트 Create 
+def project_update(request):
+    form = CreateProject()
+
+    return render(request, 'project_edit.html', {"form": form})
+
 
 # 유저 프로젝트 디테일 페이지
 def project_detail(request):
@@ -36,7 +43,6 @@ def project_detail(request):
     project1 = Project.objects.all()
     tag = ProjectTags.objects.all()
 
-    # print(description)
     return render(request, 'project_detail.html', {
         "project": project1,
         "tags": tag
