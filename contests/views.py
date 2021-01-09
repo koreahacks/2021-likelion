@@ -17,8 +17,7 @@ def create_contest(request):
     if request.user.is_authenticated:
         current_user = request.user
     else:
-        pass
-        # return redirect('login')
+        return redirect("/")
 
     if request.method == "POST":
 
@@ -36,7 +35,7 @@ def create_contest(request):
         new_contest.save()
 
         # request.POST => csrt_token + 공모전 입력값들 + 역할 개수
-        number_of_roles = len(request.POST) - 6
+        number_of_roles = int((len(request.POST) - 6) / 2)
 
         print(number_of_roles)
 
@@ -46,9 +45,10 @@ def create_contest(request):
 
             new_role.contest = new_contest
 
-            index = "role_name_" + str(i)
-            new_role.name = request.POST[index]
-
+            name_index = "role_name_" + str(i)
+            new_role.name = request.POST[name_index]
+            size_index = "role_size_" + str(i)
+            new_role.max_size = int(request.POST[size_index])
             new_role.save()
 
         return redirect("contest_list")
@@ -142,7 +142,52 @@ def display_contest_detail(request, contest_id):
 
 
 def update_contest(request, contest_id):
-    pass
+
+    contest = Contest.objects.get(pk=contest_id)
+    roles = contest.role_set.all()
+
+    if request.method == "POST":
+        contest.contest_name = request.POST["contest_name"]
+        contest.contest_organizer = request.POST["contest_organizer"]
+        contest.title = request.POST["title"]
+        contest.deadline = request.POST["deadline"]
+        contest.category = request.POST["category"]
+
+        contest.save()
+
+        # request.POST => csrt_token + 공모전 입력값들 + 역할 개수
+        number_of_roles = int((len(request.POST) - 6) / 2)
+
+        print(number_of_roles)
+
+        for i in range(number_of_roles):
+
+            size_index = "role_size_" + str(i)
+            name_index = "role_name_" + str(i)
+
+            if i > len(roles):
+                new_role = Role()
+
+                new_role.contest = contest
+
+                new_role.name = request.POST[name_index]
+                new_role.max_size = int(request.POST[size_index])
+                new_role.save()
+                continue
+
+            if roles[i].name == request.POST[name_index] and roles[i].max_size == int(
+                request.POST[size_index]
+            ):
+                continue
+
+            else:
+                roles[i].name = request.POST[name_index]
+                roles[i].max_size = int(request.POST[size_index])
+                roles[i].save()
+
+        return redirect("contest_detail", contest_id)
+
+    return render(request, "contest_update.html", {"contest": contest})
 
 
 """
@@ -177,12 +222,3 @@ def register_in_team(request):
     }
 
     return HttpResponse(json.dumps(context), content_type="application/json")
-
-
-"""
-공모전 수정 페이지
-"""
-
-
-def update_contest(request, contest_id):
-    pass
