@@ -20,7 +20,8 @@ class User(AbstractUser):
     # Contest N:M
 
     # 구현해야 할 목록
-
+    # 뱃지 이벤트들 구현해야함 ..
+    
 
     ''' 사용자 + 포트폴리오 모델  '''
     name = models.CharField(max_length=20)  # 이름
