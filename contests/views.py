@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Contest, Role
 
 # Create your views here.
@@ -13,17 +13,18 @@ def create_contest(request):
 
     if request.method == "POST":
 
-        # new_contest = Contest()
+        # 새로운 객체 생성
+        new_contest = Contest()
 
-        contest_name = request.POST["contest_name"]
-        contest_organizer = request.POST["contest_organizer"]
-        title = request.POST["title"]
-        deadline = request.POST["deadline"]
-        category = request.POST["category"]
+        # 템플릿으로부터 데이터를 불러오는 코드
+        new_contest.contest_name = request.POST["contest_name"]
+        new_contest.contest_organizer = request.POST["contest_organizer"]
+        new_contest.title = request.POST["title"]
+        new_contest.deadline = request.POST["deadline"]
+        new_contest.category = request.POST["category"]
+        new_contest.poster = request.FILES["poster"]
 
-        # 불러온 데이터 저장하는 코드 필요
-
-        print(contest_name, contest_organizer, title, deadline, category)
+        new_contest.save()
 
         # request.POST => csrt_token + 공모전 입력값들 + 역할 개수
         number_of_roles = len(request.POST) - 6
@@ -32,14 +33,16 @@ def create_contest(request):
 
         for i in range(number_of_roles):
 
-            # 역할 obj 생성 후 공모전 연결까지 하는 코드 필요
+            new_role = Role()
+
+            new_role.contest = new_contest
 
             index = "role_name_" + str(i)
-            role_name = request.POST[index]
-            print(role_name)
+            new_role.name = request.POST[index]
 
-        poster = request.FILES["poster"]
-        print(poster)
+            new_role.save()
+
+        return redirect("contest_create")
 
     return render(request, "contest_create.html")
 
