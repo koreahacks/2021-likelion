@@ -64,6 +64,15 @@ def create_contest(request):
 # 정렬, 검색 둘다 한번에 할 수 있으면 최고 , 안되면 어쩔 수 없음
 def display_contest_list(request):
 
+    if request.user.is_authenticated:
+        current_user = request.user
+    else:
+        return redirect("/")
+
+    if "my_post" in request.POST:
+        contests = current_user.contest_set.all()
+        return render(request, "contest_list.html", {"contests": contests})
+
     # search bar 구현
     if "search" in request.GET:
         search_keyword = request.GET["search"]
