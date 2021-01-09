@@ -1,6 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .models import Contest, Role
+from users.models import User
 from django.views.decorators.http import require_POST
+import json
 
 # Create your views here.
 
@@ -110,9 +112,26 @@ def delete_contest(request, contest_id):
 
 def display_contest_detail(request, contest_id):
 
+    # 로그인이 안돼있을 경우 로그인 페이지로 이동
+    if not request.user.is_authenticated:
+        # 로그인 페이지로 바꿔줘야함
+        return redirect("/")
+
+    current_user = request.user
+
     contest = Contest.objects.get(pk=contest_id)
 
-    context = {"contest": contest}
+    if current_user.id == contest.author.id:
+        access = True
+    else:
+        access = False
+
+    context = {
+        "contest": contest,
+        "access": access,
+    }
+
+    # 신청 한 사람은 신청 못하게 해야 하는데 이건 어떻게 처리하지 ?
 
     return render(request, "contest_detail.html", context)
 
@@ -133,7 +152,31 @@ def update_contest(request, contest_id):
 
 @require_POST
 def register_in_team(request):
-    pass
+    contest_id = request.POST["contest_id"]
+    role_id = request.POST["role_id"]
+    user_id = request.POST["user_id"]
+
+    print(contest_id + role_id + user_id)
+
+    role = Role.objects.get(pk=role_id)
+    user = User.objects.get(pk=user_id)
+
+    if role.confirmed_members.count() >= role.max_size:
+        message = "fail"
+    else:
+        # role.confirmed_members.add(user)
+        # role.not_confirmed_members.remove(user)
+        message = "connect success"
+
+    # ajax를 이용한 비동기 통신을 위한 코드
+    context = {
+        "message": message,
+        "role_name": role.name,
+        "role_max_size": role.max_size,
+        "user_name": user.name,
+    }
+
+    return HttpResponse(json.dumps(context), content_type="application/json")
 
 
 """

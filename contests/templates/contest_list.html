@@ -19,7 +19,7 @@
 <hr>
 {% for contest in contests %}
 <a href="{% url 'contest_detail' contest.id %}">{{ contest.contest_name }}</a>
-<p>남은 날자 : {{ contest.days_left }}</p>
+<p>남은 날자 : {{ contest.get_remain_days }}</p>
 <hr>
 {% endfor %}
 
