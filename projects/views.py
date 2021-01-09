@@ -75,6 +75,6 @@ def project_delete(request, pk):
     raise PermissionDenied
 
 # 유저 프로젝트 디테일 페이지
-def project_detail(request):
-    
-    return render(request, 'project_detail.html')
+def project_detail(request, pk):    
+    project = get_object_or_404(Project, pk=pk)
+    return render(request, 'project_detail.html', {"project":project})
