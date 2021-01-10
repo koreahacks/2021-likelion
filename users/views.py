@@ -119,6 +119,8 @@ def user_signup(request):
             )
             if 'image' in request.FILES:
                 user_.image = request.FILES['image']
+
+            user_.save()
             hashtags = request.POST.get('hashtags').split(',')
             for hstag in hashtags:
                 hashtag = HashTags(
