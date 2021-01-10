@@ -191,6 +191,7 @@ header {
 /* ---------------------- */
 
 main {
+    min-height: 100%;
     padding: 70px 0 0 0;
 }
 
@@ -198,8 +199,8 @@ main {
 
 footer {
     position: relative;
-    left: 0%;
-    bottom: 0%;
+    left: 0;
+    bottom: 0;
     width: 100%;
     height: 200px;
     display: flex;
@@ -232,8 +233,6 @@ footer {
 .footer-developers {
     display: flex;
     flex-direction: row;
-    width: 50%;
-    margin-left: 10%;
 }
 
 .footer-developers span {
