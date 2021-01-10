@@ -60,19 +60,3 @@
         
     </main>
 {% endblock %}
-<!-- 조회수 뱃지 -->
-                {% if users.hit_count >= 20 %}
-                <img src="{% static 'images/badge/atendee_badge.png' %}">
-                {% endif %}
-                <!-- 프로젝트 뱃지 -->
-                {% if users.project.count >= 5 %}
-                <img src="{% static 'images/badge/project_badge.png' %}">
-                {% endif %}
-                <!-- 공모전 게시글 뱃지 -->
-                {% if users.contest_set.count >= 5 %}
-                <img src="{% static 'images/badge/planner_badge.png' %}">
-                {% endif %}
-                <!-- 공모전 참여 뱃지 -->
-                {% if users.confirmed_member_set.count >= 5 %}
-                <img src="{% static 'images/badge/atendee_badge.png' %}">
-                {% endif %}

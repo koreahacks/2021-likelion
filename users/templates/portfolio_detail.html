@@ -82,6 +82,7 @@
         </p>
          <div class="contest-card-flex">
             {% for contests in users.contest_set.all %}
+            <a href="{% url 'contests_detail' contests.id %}">
             <div class="contest-card">
                 <img src="{{ contests.poster.url }}">
                 <p class="contest-card-title">
