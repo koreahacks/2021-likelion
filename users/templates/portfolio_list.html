@@ -37,6 +37,10 @@
         </div>
         <div class="card-flex">
         {% for user in users %}
+            {% if user.username == 'admin' %}
+                
+            {% else %}
+        
             <a href="{% url 'portfolio_detail' user.pk %}">
                 <div class="card">
                     <img src="{{user.image.url}}">
@@ -69,7 +73,8 @@
                         {% endfor %}
                     </p>
                 </div>
-            </a>
+            </a>  
+            {% endif %}
         {% endfor %}
 
         </div>
