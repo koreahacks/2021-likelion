@@ -212,6 +212,8 @@ def register_into_team(request, role_id, contest_id):
     role.not_confirmed_members.add(user)
 
     contest = Contest.objects.get(pk=contest_id)
+    print(user)
+    print(contest.author, contest.author.id)
 
     sms_reminder('register', user.id, contest.author.id)
 
@@ -250,7 +252,7 @@ def register_in_team(request):
         "major": user.major,
     }
 
-    sms_reminder('confirm', user.id, request.user.id)
+    sms_reminder('confirm', request.user.id, user.id)
 
     return HttpResponse(json.dumps(context), content_type="application/json")
 
