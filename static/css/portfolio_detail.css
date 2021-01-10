@@ -1,6 +1,17 @@
 /* 나눔바른고딕 - 본문과 작은 글자에 쓰임
 폰트 웨이트로 조절 300:light, 400:medium, 700:bold 
 NanumBarunGothic */
+.contest-card:nth-of-type(1) {
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contest-card a {
+    font-size: 30px;
+
+}
 
 main {
     width: 1100px;

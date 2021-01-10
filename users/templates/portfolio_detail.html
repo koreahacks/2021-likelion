@@ -103,6 +103,12 @@
             PROJECT
         </p>
         <div class="contest-card-flex">
+            <div class="contest-card">
+                <a href="{% url 'project_create'%}">
+                   
+                       +
+                </a>
+            </div>
             {% for projects in users.project.all %}
             <div class="contest-card">
                 <img class="contest-card-img" src="{{projects.thumnail.url}}" height="300px" width="300px">
