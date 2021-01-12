@@ -3,7 +3,7 @@ from .models import Contest, Role
 from users.models import User
 from django.views.decorators.http import require_POST
 import json
-from . import remind_module
+from .remind_module import sms_reminder
 
 # Create your views here.
 
@@ -211,6 +211,12 @@ def register_into_team(request, role_id, contest_id):
 
     role.not_confirmed_members.add(user)
 
+    contest = Contest.objects.get(pk=contest_id)
+    print(user)
+    print(contest.author, contest.author.id)
+
+    sms_reminder('register', user.id, contest.author.id)
+
     return redirect("contest_detail", contest_id)
 
 
@@ -245,6 +251,8 @@ def register_in_team(request):
         "user_name": user.name,
         "major": user.major,
     }
+
+    sms_reminder('confirm', request.user.id, user.id)
 
     return HttpResponse(json.dumps(context), content_type="application/json")
 
